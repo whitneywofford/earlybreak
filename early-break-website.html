@@ -94,8 +94,8 @@
       justify-content: flex-end;
       padding: 0 40px 70px;
       position: relative;
-      overflow: hidden;
-      overflow-x: clip;
+      overflow: clip;
+      overflow-y: hidden;
     }
 
     /* Grain texture */
@@ -108,18 +108,19 @@
       z-index: 1;
     }
 
-    /* Ball trail — large, upper right */
+    /* Ball trail — sweeps in from right edge */
     .hero-balls {
       position: absolute;
       top: 50%;
-      right: -120px;
-      transform: translateY(-52%);
-      width: 62vw;
-      max-width: 820px;
+      right: 0;
+      transform: translateY(-50%);
+      width: 50vw;
+      max-width: 600px;
       z-index: 0;
       opacity: 0;
       animation: fadeIn 1.2s 0.3s forwards;
       overflow: visible;
+      pointer-events: none;
     }
 
     .hero-balls svg { width: 100%; height: auto; }
@@ -949,13 +950,13 @@
     }
 
     .logo-pill.sponsor-pill {
-      border-color: rgba(118,172,241,0.35);
-      background: rgba(45,71,107,0.3);
+      border-color: rgba(176,238,91,0.35);
+      background: rgba(176,238,91,0.08);
     }
 
     .logo-pill.sponsor-pill:hover {
-      border-color: var(--sky);
-      background: rgba(45,71,107,0.5);
+      border-color: var(--fluor);
+      background: rgba(176,238,91,0.15);
     }
 
     .logo-pill-name {
@@ -966,7 +967,7 @@
       color: var(--sage);
     }
 
-    .logo-pill.sponsor-pill .logo-pill-name { color: var(--sky); }
+    .logo-pill.sponsor-pill .logo-pill-name { color: var(--fluor); }
 
     .logo-pill-dot {
       width: 5px; height: 5px;
@@ -976,7 +977,7 @@
       flex-shrink: 0;
     }
 
-    .logo-pill.sponsor-pill .logo-pill-dot { background: var(--sky); }
+    .logo-pill.sponsor-pill .logo-pill-dot { background: var(--fluor); }
 
     /* ── MOBILE additions ── */
     @media (max-width: 768px) {
@@ -1046,14 +1047,14 @@
 
   <!-- Ball trail -->
   <div class="hero-balls">
-    <svg viewBox="0 0 900 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="60"  cy="140" r="110" fill="#F6F8ED" opacity="0.03"/>
-      <circle cx="170" cy="140" r="110" fill="#F6F8ED" opacity="0.06"/>
-      <circle cx="290" cy="140" r="110" fill="#F6F8ED" opacity="0.10"/>
-      <circle cx="420" cy="140" r="110" fill="#F6F8ED" opacity="0.16"/>
-      <circle cx="555" cy="140" r="110" fill="#F6F8ED" opacity="0.25"/>
-      <circle cx="690" cy="140" r="110" fill="#F6F8ED" opacity="0.38"/>
-      <circle cx="820" cy="140" r="110" fill="#F6F8ED" opacity="0.52"/>
+    <svg viewBox="0 0 700 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
+      <!-- Brightest ball enters from off-screen right, trail fades left -->
+      <circle cx="700" cy="140" r="110" fill="#F6F8ED" opacity="0.55"/>
+      <circle cx="575" cy="140" r="110" fill="#F6F8ED" opacity="0.38"/>
+      <circle cx="450" cy="140" r="110" fill="#F6F8ED" opacity="0.24"/>
+      <circle cx="330" cy="140" r="110" fill="#F6F8ED" opacity="0.13"/>
+      <circle cx="215" cy="140" r="110" fill="#F6F8ED" opacity="0.07"/>
+      <circle cx="105" cy="140" r="110" fill="#F6F8ED" opacity="0.03"/>
     </svg>
   </div>
 
@@ -1066,7 +1067,7 @@
     </h1>
 
     <p class="hero-sub">
-      Discover playing opportunities across the globe. From global prize money events to local social playing — we find every way to keep you on the court.
+      Discover playing opportunities across the globe. From national prize money events to local social playing — we find every way to keep you on the court.
     </p>
 
     <div class="signup-form">
@@ -1100,11 +1101,11 @@
     </div>
     <div class="sponsor-content">
       <div class="sponsor-left">
-        <svg xmlns="http://www.w3.org/2000/svg" width="182" height="65" viewBox="0 0 182 65" fill="none" style="height:52px;width:auto;display:block;"><g clip-path="url(#clip0_119_592)"><path d="M36.0203 4.06006H8.28613C18.332 8.43068 19.4356 8.98085 26.6029 11.7102C28.059 12.2665 28.433 12.7982 28.433 14.5287C28.5188 16.4466 28.433 40.6786 28.433 47.5604H36.0141C37.2864 47.5604 38.3164 46.54 38.3164 45.2767V6.34373C38.3164 5.08356 37.2894 4.06006 36.0172 4.06006H36.0203Z" fill="#48A7FF"/><path fill-rule="evenodd" clip-rule="evenodd" d="M26.0637 15.2049C26.0637 13.5329 24.954 13.5329 21.0791 11.6611L4.3902 4.67178C2.7256 3.95871 0.5 3.52534 0.5 5.36949V49.8073C0.5 51.2303 2.05424 51.7313 3.52878 52.2047C3.96409 52.346 4.39326 52.4843 4.77646 52.6442L20.2637 59.1141C22.1766 59.9132 24.4727 60.282 25.6867 58.5762C25.9196 58.2504 26.0637 57.9276 26.0637 57.6572V17.9927C26.0637 18.5336 26.0637 15.2049 26.0637 15.2049ZM20.6346 40.0609C19.5371 40.0609 18.6481 38.5487 18.6481 36.6831C18.6481 34.8174 19.5371 33.3052 20.6346 33.3052C21.7321 33.3052 22.6211 34.8174 22.6211 36.6831C22.6211 38.5487 21.7321 40.0609 20.6346 40.0609Z" fill="#093762"/><path d="M115.827 5.33266C115.358 4.79171 114.791 4.37063 114.125 4.07249C113.472 3.77435 112.737 3.62375 111.912 3.62375C111.02 3.62375 110.211 3.82353 109.487 4.22309C108.764 4.60729 108.181 5.19742 107.743 5.99347C107.599 6.26395 107.482 6.56516 107.381 6.87866V3.98643H105.039V19.8399H107.997V14.0217C108.408 14.6302 108.917 15.1005 109.53 15.4201C110.254 15.7736 111.048 15.9519 111.912 15.9519C112.777 15.9519 113.479 15.8043 114.147 15.5031C114.815 15.1896 115.382 14.7624 115.848 14.2245C116.33 13.6682 116.694 13.0381 116.933 12.325C117.188 11.5997 117.317 10.8159 117.317 9.9799V9.53116C117.317 8.70744 117.188 7.93598 116.933 7.22598C116.676 6.50061 116.308 5.86746 115.827 5.32651V5.33266ZM113.954 11.6919C113.684 12.2482 113.31 12.6816 112.826 12.9951C112.357 13.3086 111.805 13.4653 111.164 13.4653C110.609 13.4653 110.085 13.3362 109.588 13.0811C109.092 12.826 108.687 12.4634 108.374 11.9931C108.062 11.5228 107.905 10.9542 107.905 10.2873V9.43588C107.905 8.73818 108.053 8.1419 108.353 7.64399C108.666 7.14607 109.064 6.76802 109.545 6.51291C110.042 6.2578 110.582 6.12871 111.164 6.12871C111.805 6.12871 112.357 6.28546 112.826 6.59897C113.307 6.89711 113.684 7.31819 113.954 7.85914C114.223 8.40009 114.358 9.03939 114.358 9.78012C114.358 10.4901 114.227 11.1294 113.957 11.698L113.954 11.6919ZM131.639 4.29071C130.86 3.97721 129.873 3.82046 128.681 3.82046C128.297 3.82046 127.887 3.8266 127.445 3.84197C127.019 3.84197 126.599 3.85734 126.188 3.885C125.778 3.91266 125.41 3.9434 125.082 3.97106V6.48832C125.477 6.46066 125.928 6.43914 126.424 6.42378C126.936 6.39611 127.439 6.3746 127.936 6.35923C128.432 6.34386 128.858 6.33772 129.211 6.33772C129.892 6.33772 130.394 6.50061 130.722 6.82949C131.05 7.15836 131.213 7.65321 131.213 8.32325V8.42775H128.849C127.828 8.42775 126.933 8.56298 126.167 8.83346C125.416 9.10393 124.824 9.50965 124.401 10.0506C123.99 10.5915 123.785 11.2892 123.785 12.1437C123.785 12.9244 123.957 13.5944 124.297 14.1507C124.653 14.7071 125.143 15.1312 125.765 15.4294C126.406 15.7275 127.142 15.8781 127.979 15.8781C128.816 15.8781 129.469 15.7336 130.023 15.4509C130.591 15.1527 131.032 14.7255 131.342 14.1723C131.489 13.9202 131.608 13.6405 131.703 13.3332V15.58H134.042V8.38779C134.042 7.30589 133.837 6.433 133.426 5.76296C133.028 5.09292 132.43 4.60422 131.636 4.29071H131.639ZM131.213 11.2892C131.185 11.9163 131.05 12.4142 130.808 12.783C130.581 13.1365 130.29 13.3946 129.934 13.5514C129.594 13.6959 129.217 13.7666 128.806 13.7666C128.126 13.7666 127.602 13.6037 127.231 13.2748C126.875 12.949 126.7 12.5218 126.7 11.9962C126.7 11.4706 126.878 11.0434 127.231 10.7176C127.599 10.3764 128.123 10.2043 128.806 10.2043H131.213V11.2923V11.2892ZM117.767 0V2.21912H119.214V15.5769H122.172V0H117.767ZM170.431 4.41673C169.594 3.86041 168.548 3.58379 167.304 3.58379C166.353 3.58379 165.516 3.75591 164.793 4.09708C164.07 4.42288 163.459 4.87162 162.963 5.4433C162.482 5.99962 162.114 6.63893 161.856 7.36429C161.614 8.07736 161.494 8.81502 161.494 9.58341V9.98912C161.494 10.7299 161.614 11.4552 161.856 12.1652C162.111 12.8783 162.482 13.5237 162.963 14.1077C163.459 14.6763 164.076 15.1312 164.814 15.4724C165.566 15.8136 166.439 15.9857 167.432 15.9857C168.426 15.9857 169.229 15.8228 169.965 15.4939C170.716 15.1681 171.335 14.704 171.816 14.1077C172.298 13.5084 172.626 12.8137 172.797 12.0146H170.072C169.943 12.4418 169.652 12.8045 169.198 13.1027C168.745 13.3854 168.156 13.5299 167.432 13.5299C166.709 13.5299 166.114 13.3731 165.645 13.0596C165.176 12.7338 164.83 12.2912 164.603 11.738C164.453 11.3599 164.358 10.9481 164.306 10.4993H172.987V9.43281C172.987 8.40931 172.773 7.4565 172.347 6.57438C171.917 5.67382 171.28 4.95768 170.431 4.41673ZM164.348 8.68593C164.407 8.36013 164.486 8.06199 164.6 7.79152C164.842 7.22291 165.188 6.78953 165.642 6.48832C166.096 6.18711 166.648 6.03958 167.304 6.03958C167.96 6.03958 168.496 6.18404 168.922 6.46681C169.361 6.74957 169.689 7.15529 169.9 7.68394C170.02 7.98208 170.103 8.32017 170.155 8.68593H164.348ZM142.788 3.62682H142.66C141.737 3.62682 140.964 3.8266 140.339 4.22617C139.729 4.62266 139.269 5.22201 138.953 6.01806C138.849 6.28239 138.769 6.57438 138.699 6.88481V3.99258H136.36V15.58H139.318V8.76891C139.318 8.01589 139.539 7.41961 139.977 6.97702C140.431 6.52213 141.02 6.29468 141.743 6.29468C142.467 6.29468 143.006 6.51598 143.405 6.9555C143.815 7.39503 144.021 7.97286 144.021 8.68285V15.5769H146.979V8.94103C146.979 7.1768 146.626 5.85209 145.915 4.97305C145.207 4.07864 144.165 3.62989 142.788 3.62989V3.62682ZM181.074 3.8389C179.698 3.8389 178.655 4.26612 177.947 5.11751C177.411 5.76296 177.08 6.642 176.948 7.75463V3.98643H174.609V15.5738H177.567V9.53731C177.567 8.5261 177.837 7.76078 178.377 7.23213C178.931 6.69118 179.704 6.4207 180.697 6.4207H181.506V3.8389H181.077H181.074ZM155.737 3.62682H155.609C154.686 3.62682 153.913 3.8266 153.288 4.22617C152.678 4.62266 152.218 5.22201 151.902 6.01806C151.798 6.28239 151.718 6.57438 151.648 6.88174V3.9895H149.306V15.5769H152.264V8.76891C152.264 8.01589 152.485 7.41961 152.923 6.97702C153.377 6.52213 153.965 6.29468 154.689 6.29468C155.412 6.29468 155.952 6.51598 156.35 6.9555C156.761 7.39503 156.967 7.97286 156.967 8.68285V15.5769H159.925V8.94103C159.925 7.1768 159.572 5.85209 158.861 4.97305C158.153 4.07864 157.111 3.62989 155.734 3.62989L155.737 3.62682Z" fill="#48A7FF"/><path d="M58.8619 3.62682H58.7331C57.8257 3.62682 57.0716 3.84197 56.4769 4.2692C55.9312 4.66876 55.5173 5.24352 55.22 5.98118V0H52.2617V15.5769H55.22V8.87649C55.22 8.1081 55.4407 7.49031 55.8791 7.02005C56.3328 6.5375 56.9214 6.29468 57.6448 6.29468C58.3254 6.29468 58.8711 6.50984 59.2819 6.93706C59.708 7.36429 59.9226 7.94827 59.9226 8.68593V15.58H62.8808V8.96562C62.8808 7.22905 62.5405 5.90741 61.86 4.99764C61.1794 4.08478 60.177 3.62989 58.8588 3.62989L58.8619 3.62682ZM75.3853 5.40027C74.8457 4.83166 74.1866 4.38907 73.4049 4.07864C72.6263 3.75284 71.7434 3.58686 70.7655 3.58686C69.7875 3.58686 68.9077 3.74976 68.126 4.07864C67.3474 4.39214 66.6791 4.83166 66.1242 5.40027C65.5847 5.95659 65.1647 6.5959 64.8673 7.32126C64.5853 8.03433 64.4412 8.78736 64.4412 9.58341V10.0322C64.4412 10.8005 64.5761 11.5413 64.8458 12.2513C65.1279 12.9643 65.5417 13.6006 66.0813 14.1723C66.6208 14.7286 67.2799 15.1681 68.0616 15.4939C68.8433 15.8197 69.7416 15.9857 70.7655 15.9857C71.7894 15.9857 72.6661 15.8228 73.4478 15.4939C74.2295 15.165 74.8886 14.7255 75.4282 14.1723C75.9677 13.6037 76.3724 12.9643 76.6421 12.2513C76.9242 11.5382 77.0683 10.8005 77.0683 10.0322V9.58341C77.0683 8.78736 76.9242 8.03126 76.6421 7.32126C76.3601 6.5959 75.9401 5.95352 75.3883 5.40027H75.3853ZM73.7268 11.6704C73.4723 12.2113 73.0953 12.6447 72.5987 12.9736C72.102 13.2871 71.492 13.4438 70.7685 13.4438C70.045 13.4438 69.435 13.2871 68.9384 12.9736C68.4418 12.6478 68.0586 12.2113 67.7888 11.6704C67.5343 11.1141 67.4056 10.4901 67.4056 9.79242C67.4056 9.09471 67.5405 8.45541 67.8103 7.91446C68.08 7.35814 68.4632 6.92477 68.9598 6.61126C69.4718 6.28546 70.0726 6.11949 70.7685 6.11949C71.4644 6.11949 72.0591 6.28239 72.5557 6.61126C73.0677 6.92477 73.4478 7.35814 73.7053 7.91446C73.9751 8.45541 74.11 9.08242 74.11 9.79242C74.113 10.4901 73.9874 11.1171 73.7299 11.6704H73.7268ZM81.9333 0.725364H79.1682L79.162 3.9895H77.3166V6.16559H79.1559L79.1436 11.2216C79.1436 12.3466 79.3153 13.241 79.6556 13.911C79.9959 14.5657 80.5047 15.0359 81.1884 15.3187C81.8842 15.5892 82.7641 15.7244 83.8278 15.7244H85.4893V13.1856H83.6807C83.1135 13.1856 82.6721 13.0381 82.3625 12.7369C82.0651 12.4234 81.9149 11.9839 81.9149 11.4153L81.9272 6.16559H85.4924V3.9895H81.9333L81.9394 0.725364H81.9333ZM99.5541 0H98.1072V2.21912H99.5541V15.5769H102.512V0H99.5541ZM95.2286 4.41673C94.3917 3.86041 93.3464 3.58379 92.1018 3.58379C91.1514 3.58379 90.3145 3.75591 89.5911 4.09708C88.8676 4.42288 88.2575 4.87162 87.7609 5.4433C87.2796 5.99962 86.9118 6.63893 86.6543 7.36429C86.4121 8.07736 86.2925 8.81502 86.2925 9.58341V9.98912C86.2925 10.7299 86.4121 11.4552 86.6543 12.1652C86.9087 12.8783 87.2796 13.5237 87.7609 14.1077C88.2575 14.6763 88.8737 15.1312 89.6125 15.4724C90.3636 15.8136 91.2373 15.9857 92.2305 15.9857C93.2238 15.9857 94.0269 15.8228 94.7627 15.4939C95.5137 15.1681 96.133 14.704 96.6143 14.1077C97.0956 13.5084 97.4236 12.8137 97.5922 12.0146H94.8669C94.7381 12.4418 94.4469 12.8045 93.9932 13.1027C93.5395 13.3854 92.9509 13.5299 92.2275 13.5299C91.504 13.5299 90.9093 13.3731 90.4402 13.0596C89.9712 12.7338 89.6248 12.2912 89.3979 11.738C89.2477 11.3599 89.1527 10.9481 89.1006 10.4993H97.7823V9.43281C97.7823 8.40931 97.5677 7.4565 97.1446 6.57438C96.7185 5.67382 96.0809 4.95768 95.2286 4.41673ZM89.1496 8.68593C89.2079 8.36013 89.2876 8.06199 89.401 7.79152C89.6432 7.22291 89.9896 6.78953 90.4433 6.48832C90.897 6.18711 91.4488 6.03958 92.1048 6.03958C92.7609 6.03958 93.2973 6.18404 93.7235 6.46681C94.1618 6.74957 94.4898 7.15529 94.7014 7.68394C94.8209 7.98208 94.9037 8.32017 94.9558 8.68593H89.1496Z" fill="#093762"/><path d="M105.854 39.6398C102.932 35.1555 97.8925 32.1895 92.1538 32.1895C91.8166 32.1895 91.4855 32.2202 91.1514 32.2417C92.8926 33.9014 94.9006 35.386 97.1445 36.6093C99.9618 38.146 102.926 39.1572 105.854 39.6429V39.6398Z" fill="#48A7FF"/><path d="M95.9061 38.893C92.862 37.2333 90.198 35.1279 88.0154 32.7397C80.986 34.5808 75.793 40.9708 75.793 48.5933C75.793 48.6855 75.8052 48.7777 75.8083 48.8699C77.1265 48.5656 78.4937 48.3873 79.9039 48.3873C89.1558 48.3873 96.7583 55.306 97.5125 64.081C103.913 61.8557 108.518 55.7701 108.518 48.5933C108.518 46.4202 108.086 44.3517 107.322 42.4522C103.496 42.0926 99.5817 40.8939 95.9092 38.89L95.9061 38.893Z" fill="#48A7FF"/><path d="M79.9007 50.8429C78.5641 50.8429 77.2735 51.0273 76.0381 51.3378C77.344 59.0893 84.0515 64.9967 92.1537 64.9967C93.1593 64.9967 94.1402 64.8922 95.0967 64.717C94.6675 56.9993 88.0275 50.8398 79.9038 50.8398L79.9007 50.8429Z" fill="#48A7FF"/><path d="M52.2617 38.5152V33.1825H72.2829V38.5152H52.2617ZM68.2149 61.9327C65.5724 61.9327 63.4112 61.5916 61.7251 60.9123C60.039 60.2331 58.7883 59.0835 57.9729 57.4607C57.1544 55.8409 56.7466 53.6525 56.7466 50.9017V25.1851H63.5767L63.5246 51.3719C63.5246 52.7673 63.8986 53.8369 64.6466 54.5869C65.3946 55.3368 66.4614 55.7118 67.8532 55.7118H72.286V61.9327H68.218H68.2149Z" fill="#48A7FF"/><path d="M122.077 62.4549C118.776 62.4549 116.237 61.3822 114.465 59.2399C112.694 57.0976 111.808 53.8827 111.808 49.595V33.1299H119.055V50.222C119.055 51.9648 119.542 53.3509 120.514 54.3775C121.486 55.4072 122.807 55.9205 124.478 55.9205C126.148 55.9205 127.509 55.3795 128.57 54.3007C129.631 53.2219 130.161 51.7558 130.161 49.9085V33.1299H137.408V61.5666H131.672V49.4936H132.246C132.246 52.3858 131.872 54.7894 131.124 56.7073C130.376 58.6252 129.281 60.0606 127.841 61.0195C126.397 61.9785 124.582 62.458 122.393 62.458H122.08L122.077 62.4549Z" fill="#48A7FF"/><path d="M141.369 61.5666V33.1822H147.105V45.2029H146.948C146.948 41.1612 147.816 38.0876 149.554 35.9791C151.292 33.8706 153.846 32.8164 157.218 32.8164H158.26V39.1418H156.28C153.846 39.1418 151.961 39.8057 150.624 41.1274C149.284 42.4521 148.616 44.3515 148.616 46.8258V61.5666H141.369Z" fill="#48A7FF"/></g><defs><clipPath id="clip0_119_592"><rect width="181" height="65" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>
+        <img src="data:image/png;base64,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" alt="ITA" style="height:52px;width:auto;display:block;"/>
         <div class="sponsor-divider"></div>
-        <p class="sponsor-desc">UTR-rated prize money events year-round across the USA & UK. Men's, women's & junior draws — the player's tour, powered by progress.</p>
+        <p class="sponsor-desc">The official governing body of college tennis. The ITA Summer Series keeps college players competing all summer long — ranked events nationwide, open to all levels.</p>
       </div>
-      <a href="https://hotelplannertennistour.com/tournaments/" target="_blank" rel="noopener" class="sponsor-btn">View All Tournaments →</a>
+      <a href="https://wearecollegetennis.com/ita-summer-series/" target="_blank" rel="noopener" class="sponsor-btn">View Summer Series →</a>
     </div>
   </div>
 </div>
@@ -1116,45 +1117,18 @@
       <div class="section-label">Playing Opportunities</div>
       <h2 class="section-title">Find Your<br/><em>Next Court.</em></h2>
     </div>
-    <p class="section-desc">Our partners bring you verified playing opportunities from across the globe, curated for the tennis obsessed.</p>
+    <p class="section-desc">Our partners bring you verified playing opportunities from across the globe, curated for the tennis obsessed and tennis curious.</p>
   </div>
 
   <div class="partner-grid">
 
-    <a class="partner-card" href="https://letsplay.intennse.com" target="_blank" rel="noopener" style="text-decoration:none;">
-      <div class="partner-card-tag">🇺🇸 &nbsp; USA &nbsp;·&nbsp; Pro Team Tennis</div>
-      <div class="partner-card-title">INTENNSE Professional Tennis League</div>
-      <div class="partner-card-location">Season 2 — Summer 2026</div>
-      <div class="partner-card-desc">The world's loudest pro team tennis league. Earn up to $70K in salary & prize money during a two-month season. First-ever pro tennis draft — 80 players, 10 teams.</div>
-      <div class="partner-card-cta">Apply Now →</div>
-      <div class="partner-card-ball"></div>
-    </a>
-
-    <a class="partner-card" href="https://www.typti.com/tournament" target="_blank" rel="noopener" style="text-decoration:none;">
-      <div class="partner-card-tag">🇺🇸 &nbsp; USA &nbsp;·&nbsp; Professional Tour</div>
-      <div class="partner-card-title">TYPTI Professional Tour</div>
-      <div class="partner-card-location">Courts Nationwide</div>
-      <div class="partner-card-desc">From local qualifiers to national championships. TYPTI brings a new racquet sports tour format to players across the country — compete, rank, and watch.</div>
-      <div class="partner-card-cta">Find a Tournament →</div>
-      <div class="partner-card-ball"></div>
-    </a>
-
-    <a class="partner-card" href="https://hotelplannertennistour.com/tournaments/" target="_blank" rel="noopener" style="text-decoration:none; border-top: 2px solid var(--sky);">
-      <div class="partner-card-tag" style="color: var(--sky);">⭐ &nbsp; Presenting Sponsor &nbsp;·&nbsp; USA / UK</div>
-      <div class="partner-card-title">HotelPlanner Tennis Tour</div>
-      <div class="partner-card-location">USA &amp; United Kingdom</div>
-      <div class="partner-card-desc">Formerly the Progress Tour. UTR-rated prize money events running year-round across Delray Beach, Cardiff, London, and more. Men's, women's & junior draws.</div>
-      <div class="partner-card-cta" style="color: var(--sky);">View Tournaments →</div>
-      <div class="partner-card-ball" style="background: var(--sky);"></div>
-    </a>
-
-    <a class="partner-card" href="https://conquerpadel.com/" target="_blank" rel="noopener" style="text-decoration:none;">
-      <div class="partner-card-tag">🎾 &nbsp; USA &nbsp;·&nbsp; Padel</div>
-      <div class="partner-card-title">Conquer Padel Club</div>
-      <div class="partner-card-location">Tempe, AZ &amp; Expanding</div>
-      <div class="partner-card-desc">World-class padel courts in a community-first environment. Locations open and coming soon across Tempe, Jacksonville, Bridgewater, Orlando, and LA.</div>
-      <div class="partner-card-cta">Book a Court →</div>
-      <div class="partner-card-ball"></div>
+    <a class="partner-card" href="https://wearecollegetennis.com/ita-summer-series/" target="_blank" rel="noopener" style="text-decoration:none; border-top: 2px solid var(--fluor);">
+      <div class="partner-card-tag" style="color: var(--fluor);">⭐ &nbsp; Presenting Sponsor &nbsp;·&nbsp; USA</div>
+      <div class="partner-card-title">ITA Summer Series</div>
+      <div class="partner-card-location">Nationwide — Summer 2026</div>
+      <div class="partner-card-desc">The official summer tournament circuit for college tennis players. Compete across the country, earn ITA ranking points, and stay match-sharp between seasons.</div>
+      <div class="partner-card-cta" style="color: var(--fluor);">View Events →</div>
+      <div class="partner-card-ball" style="background: var(--fluor);"></div>
     </a>
 
     <a class="partner-card" href="https://www.usta.com/en/home/play/adult-tennis/programs/national/adult-tournaments-schedule.html" target="_blank" rel="noopener" style="text-decoration:none;">
@@ -1166,12 +1140,39 @@
       <div class="partner-card-ball"></div>
     </a>
 
+    <a class="partner-card" href="https://hotelplannertennistour.com/tournaments/" target="_blank" rel="noopener" style="text-decoration:none;">
+      <div class="partner-card-tag">🇺🇸🇬🇧 &nbsp; USA / UK &nbsp;·&nbsp; Prize Money Tour</div>
+      <div class="partner-card-title">HotelPlanner Tennis Tour</div>
+      <div class="partner-card-location">USA &amp; United Kingdom</div>
+      <div class="partner-card-desc">Formerly the Progress Tour. UTR-rated prize money events running year-round across Delray Beach, Cardiff, London, and more. Men's, women's & junior draws.</div>
+      <div class="partner-card-cta">View Tournaments →</div>
+      <div class="partner-card-ball"></div>
+    </a>
+
     <a class="partner-card" href="https://nwto.us/" target="_blank" rel="noopener" style="text-decoration:none;">
       <div class="partner-card-tag">♀ &nbsp; USA &nbsp;·&nbsp; Women's Tennis</div>
       <div class="partner-card-title">NWTO — National Women's Tennis Organization</div>
       <div class="partner-card-location">Nationwide</div>
       <div class="partner-card-desc">The premier organization for competitive women's tennis. Tournaments, intersectionals, ITF events, and a national community built for women who love the game.</div>
       <div class="partner-card-cta">Explore Tournaments →</div>
+      <div class="partner-card-ball"></div>
+    </a>
+
+    <a class="partner-card" href="https://conquerpadel.com/" target="_blank" rel="noopener" style="text-decoration:none;">
+      <div class="partner-card-tag">🎾 &nbsp; USA &nbsp;·&nbsp; Padel</div>
+      <div class="partner-card-title">Conquer Padel Club</div>
+      <div class="partner-card-location">Tempe, AZ &amp; Expanding</div>
+      <div class="partner-card-desc">World-class padel courts in a community-first environment. Locations open and coming soon across Tempe, Jacksonville, Bridgewater, Orlando, and LA.</div>
+      <div class="partner-card-cta">Book a Court →</div>
+      <div class="partner-card-ball"></div>
+    </a>
+
+    <a class="partner-card" href="https://letsplay.intennse.com" target="_blank" rel="noopener" style="text-decoration:none;">
+      <div class="partner-card-tag">🇺🇸 &nbsp; USA &nbsp;·&nbsp; Pro Team Tennis</div>
+      <div class="partner-card-title">INTENNSE Professional Tennis League</div>
+      <div class="partner-card-location">Season 2 — Summer 2026</div>
+      <div class="partner-card-desc">The world's loudest pro team tennis league. Earn up to $70K in salary & prize money during a two-month season. First-ever pro tennis draft — 80 players, 10 teams.</div>
+      <div class="partner-card-cta">Apply Now →</div>
       <div class="partner-card-ball"></div>
     </a>
 
@@ -1193,12 +1194,12 @@
       <div class="partner-card-ball"></div>
     </a>
 
-    <a class="partner-card" href="https://wearecollegetennis.com/ita-summer-series/" target="_blank" rel="noopener" style="text-decoration:none;">
-      <div class="partner-card-tag">🇺🇸 &nbsp; USA &nbsp;·&nbsp; College Tennis</div>
-      <div class="partner-card-title">ITA Summer Series</div>
-      <div class="partner-card-location">Nationwide — Summer 2026</div>
-      <div class="partner-card-desc">The official summer tournament circuit for college tennis players. Compete across the country, earn ITA ranking points, and stay match-sharp between seasons.</div>
-      <div class="partner-card-cta">View Events →</div>
+    <a class="partner-card" href="https://www.typti.com/tournament" target="_blank" rel="noopener" style="text-decoration:none;">
+      <div class="partner-card-tag">🇺🇸 &nbsp; USA &nbsp;·&nbsp; Professional Tour</div>
+      <div class="partner-card-title">TYPTI Professional Tour</div>
+      <div class="partner-card-location">Courts Nationwide</div>
+      <div class="partner-card-desc">From local qualifiers to national championships. TYPTI brings a new racquet sports tour format to players across the country — compete, rank, and watch.</div>
+      <div class="partner-card-cta">Find a Tournament →</div>
       <div class="partner-card-ball"></div>
     </a>
 
@@ -1228,7 +1229,11 @@
     <div class="logo-wall-label">Our Partners</div>
   </div>
   <div class="logo-wall-grid">
-    <a href="https://hotelplannertennistour.com" target="_blank" rel="noopener" class="logo-pill sponsor-pill">
+    <a href="https://wearecollegetennis.com/ita-summer-series/" target="_blank" rel="noopener" class="logo-pill sponsor-pill">
+      <div class="logo-pill-dot"></div>
+      <span class="logo-pill-name">ITA</span>
+    </a>
+    <a href="https://hotelplannertennistour.com" target="_blank" rel="noopener" class="logo-pill">
       <div class="logo-pill-dot"></div>
       <span class="logo-pill-name">HotelPlanner Tour</span>
     </a>
@@ -1259,10 +1264,6 @@
     <a href="https://www.playyourcourt.com" target="_blank" rel="noopener" class="logo-pill">
       <div class="logo-pill-dot"></div>
       <span class="logo-pill-name">PlayYourCourt</span>
-    </a>
-    <a href="https://wearecollegetennis.com/ita-summer-series/" target="_blank" rel="noopener" class="logo-pill">
-      <div class="logo-pill-dot"></div>
-      <span class="logo-pill-name">ITA</span>
     </a>
   </div>
 </div>
